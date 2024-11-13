@@ -141,11 +141,13 @@
   <ItemGroup>
     <ClCompile Include="main.c" />
     <ClCompile Include="triangleSolver.c" />
+    <ClCompile Include="Validation.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
     <ClInclude Include="rectangleSolver.h" />
     <ClInclude Include="triangleSolver.h" />
+    <ClInclude Include="Validation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
