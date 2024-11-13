@@ -6,6 +6,8 @@ typedef struct point {
 	int x;
 	int y;
 } POINT;
+
+
 //
 //
 //bool is_Rectangle(POINT* points);

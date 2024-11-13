@@ -2,6 +2,7 @@
 void printWelcome();
 int printShapeMenu();
 int* getTriangleSides(int* triangleSides);
+int getRectanglePoints();
 #include "triangleSolver.h"
 #include "rectangleSolver.h"
 #include "validation.h"
@@ -9,5 +10,6 @@ int* getTriangleSides(int* triangleSides);
 void printWelcome();
 int printShapeMenu();
 int* getTriangleSides(int* triangleSides);
+int getRectanglePoints();
 
 //POINT* getRectangleSides();
