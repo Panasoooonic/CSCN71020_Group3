@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #include "main.h"
 #include "triangleSolver.h"
@@ -50,17 +51,17 @@ int main() {
 
 		case 2:
 			printf_s("Rectangle selected.\n");
-
+			printf_s("Please enter 4 (x,y) points to create the rectangle.\n");
 			//Create 2d array to store points of rectangle
 			POINT ArrOfPoints[4];
-
 			//Iterate 4 times to take 4 inputs
 			for (int i = 0; i < 4; i++) {
 				//Take input from user and store it in tmp int array of size 2
-				POINT* TmpPointPntr = getRectanglePoints();
+				int* TmpPointPntr = getRectanglePoints();
 				//fill in i point of 2d array with inputted x and y values
-				ArrOfPoints[i].x = TmpPointPntr->x;
-				ArrOfPoints[i].y = TmpPointPntr->y;
+				ArrOfPoints[i].x = *(TmpPointPntr + 0);
+				ArrOfPoints[i].y = *(TmpPointPntr + 1);
+				printf("%d %d", ArrOfPoints[i].x, ArrOfPoints[i].y);
 				//Free memory used to temp variable
 				free(TmpPointPntr);
 			}
@@ -103,9 +104,10 @@ void printWelcome() {
 }
 
 int printShapeMenu() {
-	printf_s("1. Triangle\n");
 	printf_s("0. Exit\n");
-
+	printf_s("1. Triangle\n");
+	printf_s("2. Rectangle\n");
+	printf_s("Enter a number: ");
 	int intInputted = ValidateStartInput();
 
 	return intInputted;
@@ -116,16 +118,16 @@ int* getTriangleSides(int* triangleSides) {
 	bool repeat = true;
 	for (int i = 0; i < 3; i++)
 	{
-		int intInputted = ValidateTriangleInput();
+		printf_s("Enter the length of a side of the triangle: ");
+		int intInputted = ValidateInput();
 		triangleSides[i] = intInputted;
 	}
 	return triangleSides;
 }
 
-int getRectanglePoints()
+int* getRectanglePoints()
 {
-	int inputArray[2];
-	printf_s("Please enter 4 (x,y) points to create the rectangle.\n");
+	int* inputArray = (int*)malloc(2 * sizeof(int));
 	for (int i = 0; i < 2; i++)
 	{
 		if (i == 0)
@@ -136,8 +138,8 @@ int getRectanglePoints()
 		{
 			printf_s("Enter the y value: ");
 		}
-		int intInputted = ValidateRectangleInput();
-		inputArray[i] = intInputted;
+		int intInputted = ValidateInput();
+		*(inputArray + i) = intInputted;
 	}
 	return inputArray;
 }
