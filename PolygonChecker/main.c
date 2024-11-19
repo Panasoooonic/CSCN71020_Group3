@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #include "main.h"
 #include "triangleSolver.h"
@@ -51,33 +52,25 @@ int main() {
 		case 2:
 			printf_s("Rectangle selected.\n");
 
-			//Create 2d array to store points of rectangle
-			POINT ArrOfPoints[4];
+			// Create 2d array to store points of rectangle
+			POINT arrayOfPoints[4];
 
-			//Iterate 4 times to take 4 inputs
+			// Iterate 4 times to take 4 inputs
 			for (int i = 0; i < 4; i++) {
-				//Take input from user and store it in tmp int array of size 2
-				POINT* TmpPointPntr = getRectanglePoints();
+				// Take input from user and store it in tmp int array of size 2
+				int* TmpPointPntr = getRectanglePoints();
 				//fill in i point of 2d array with inputted x and y values
-				ArrOfPoints[i].x = TmpPointPntr->x;
-				ArrOfPoints[i].y = TmpPointPntr->y;
+				arrayOfPoints[i].x = *TmpPointPntr;
+				arrayOfPoints[i].y = *(TmpPointPntr + 1);
 				//Free memory used to temp variable
 				free(TmpPointPntr);
 			}
 
-			////Sort points into proper order (Top Right) (Bottom Right) (Bottom Left) (Top Left)
-			//SortPoints(ArrOfPoints);
-
-			////Test if points form a rectangle.
-			//if (is_Recatngle(ArrOfPoints)) {
-			//	printf("This is a rectangle with: \n");
-			//	printf("Perameter of: %d\n", get_Peram(ArrOfPoints));
-			//	printf("Area of: %d\n", get_Area(ArrOfPoints));
-			//}
-			//else {
-			//	printf("This is not a rectangle");
-			//}
-			//break;
+			bool isRectangular = checkIfRectangular(arrayOfPoints);
+			if (!isRectangular) {
+				printf("4 given points cannot shape a rectangular!");
+				break;
+			}
 
 
 		case 0:

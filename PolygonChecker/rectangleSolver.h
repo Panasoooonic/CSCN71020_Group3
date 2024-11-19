@@ -14,7 +14,7 @@ typedef struct point {
 //int get_Peram(POINT* arrOfPoints);
 //int get_Area(POINT* arrOfPoints);
 //int get_Distance(POINT pointA, POINT pointB);
-//bool is_Orthogonal(POINT pointA, POINT pointB, POINT pointC, POINT pointD);
+bool checkIfRectangular(POINT points[4]);
 //void Sort_Points(POINT* arrOfPoints);
 
 
