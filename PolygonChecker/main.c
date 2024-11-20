@@ -78,7 +78,7 @@ int main() {
 			break;
 		default:
 
-			 shapeChoice = printShapeMenu();
+			shapeChoice = printShapeMenu();
 			continueProgram = false;
 			break;
 		}
@@ -96,9 +96,10 @@ void printWelcome() {
 }
 
 int printShapeMenu() {
-	printf_s("1. Triangle\n");
 	printf_s("0. Exit\n");
-
+	printf_s("1. Triangle\n");
+	printf_s("2. Rectangle\n");
+	printf_s("Enter a number: ");
 	int intInputted = ValidateStartInput();
 
 	return intInputted;
@@ -109,16 +110,16 @@ int* getTriangleSides(int* triangleSides) {
 	bool repeat = true;
 	for (int i = 0; i < 3; i++)
 	{
-		int intInputted = ValidateTriangleInput();
+		printf_s("Enter the length of a side of the triangle: ");
+		int intInputted = ValidateInput();
 		triangleSides[i] = intInputted;
 	}
 	return triangleSides;
 }
 
-int getRectanglePoints()
+int* getRectanglePoints()
 {
-	int inputArray[2];
-	printf_s("Please enter 4 (x,y) points to create the rectangle.\n");
+	int* inputArray = (int*)malloc(2 * sizeof(int));
 	for (int i = 0; i < 2; i++)
 	{
 		if (i == 0)
@@ -129,8 +130,8 @@ int getRectanglePoints()
 		{
 			printf_s("Enter the y value: ");
 		}
-		int intInputted = ValidateRectangleInput();
-		inputArray[i] = intInputted;
+		int intInputted = ValidateInput();
+		*(inputArray + i) = intInputted;
 	}
 	return inputArray;
 }
