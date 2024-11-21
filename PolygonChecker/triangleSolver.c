@@ -43,3 +43,10 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 
     return result;
 }
+
+
+void calculateAngles(int side1, int side2, int side3, float* angles) {
+    angles[0] = acos((float)(side2 * side2 + side3 * side3 - side1 * side1) / (2.0 * side2 * side3)) * 180.0 / PI;
+    angles[1] = acos((float)(side1 * side1 + side3 * side3 - side2 * side2) / (2.0 * side1 * side3)) * 180.0 / PI;
+    angles[2] = acos((float)(side1 * side1 + side2 * side2 - side3 * side3) / (2.0 * side1 * side2)) * 180.0 / PI;
+}

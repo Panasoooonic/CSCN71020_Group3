@@ -20,32 +20,31 @@ int main() {
 		{
 		case 1:
 			printf_s("Triangle selected.\n");
-			//Take triangle sides as input
+			// Take triangle sides as input
+
 			int triangleSides[3] = { 0, 0, 0 };
 			int* triangleSidesPtr = getTriangleSides(triangleSides);
+			// If triangle sides aren't a triangle then give an error message and break
 
-			//If triangle sides aren't a triangle then give a error message and break
-			bool* triangleCheck = isTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
+			bool triangleCheck = isTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
 			if (!triangleCheck) {
-				printf("ERROR: Sides do not make a triangle.");
+				printf("ERROR: Sides do not make a triangle.\n");
 				break;
 			}
 
-			//Print the type of triangle
+			// Print the type of triangle
 			char* triangleType = analyzeTriangle(triangleSidesPtr[0], triangleSidesPtr[1], triangleSidesPtr[2]);
 			printf_s("%s\n", triangleType);
 
-			//Get the angles associated with the 3 sides
-			/*float* angles = getTriangleAngles(triangleSides[0], triangleSides[1], triangleSides[2]);
-			if (angles == NULL) {
-				break;
-			}*/
+			// Get the angles associated with the 3 sides
 
-			//Print the angles and free memory
-			/*for (int i = 0; i < 3; i++) {
-				printf("Angle %d: %f\n", i + 1, angles[i]);
+			float angles[3];
+			calculateAngles(triangleSides[0], triangleSides[1], triangleSides[2], angles);
+
+			// Print the angles
+			for (int i = 0; i < 3; i++) {
+				printf("Angle %d: %.2f\n", i + 1, angles[i]);
 			}
-			free(angles);*/
 
 			break;
 
