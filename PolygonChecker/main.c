@@ -6,13 +6,12 @@
 #include "triangleSolver.h"
 #include "Validation.h"
 
-
 int side = 0;
 
 int main() {
-	bool continueProgram = true;
-	while (continueProgram) {
-		printWelcome();
+    bool continueProgram = true;
+    while (continueProgram) {
+        printWelcome();
 
 		int shapeChoice = printShapeMenu();
 		
@@ -46,7 +45,7 @@ int main() {
 				printf("Angle %d: %.2f\n", i + 1, angles[i]);
 			}
 
-			break;
+            break;
 
 		case 2:
 			printf_s("Rectangle selected.\n");
@@ -84,66 +83,58 @@ int main() {
 			}
 			break;
 
+            // Additional rectangle processing can be added here
 
-		case 0:
-			continueProgram = false;
-			break;
-		default:
+            break;
 
-			shapeChoice = printShapeMenu();
-			continueProgram = false;
-			break;
-		}
-	}
-	return 0;
+        case 0:
+            continueProgram = false;
+            break;
+        default:
+            printf_s("Invalid value entered.\n");
+            break;
+        }
+    }
+    return 0;
 }
 
-
 void printWelcome() {
-	printf_s("\n");
-	printf_s(" **********************\n");
-	printf_s("**     Welcome to     **\n");
-	printf_s("**   Polygon Checker  **\n");
-	printf_s(" **********************\n");
+    printf_s("\n");
+    printf_s(" **********************\n");
+    printf_s("**     Welcome to     **\n");
+    printf_s("**   Polygon Checker  **\n");
+    printf_s(" **********************\n");
 }
 
 int printShapeMenu() {
-	printf_s("0. Exit\n");
-	printf_s("1. Triangle\n");
-	printf_s("2. Rectangle\n");
-	printf_s("Enter a number: ");
-	int intInputted = ValidateStartInput();
+    printf_s("0. Exit\n");
+    printf_s("1. Triangle\n");
+    printf_s("2. Rectangle\n");
+    printf_s("Enter a number: ");
+    int intInputted = ValidateStartInput();
 
-	return intInputted;
+    return intInputted;
 }
-
 
 int* getTriangleSides(int* triangleSides) {
-	bool repeat = true;
-	for (int i = 0; i < 3; i++)
-	{
-		printf_s("Enter the length of a side of the triangle: ");
-		int intInputted = ValidateInput();
-		triangleSides[i] = intInputted;
-	}
-	return triangleSides;
+    for (int i = 0; i < 3; i++) {
+        printf_s("Enter the length of a side of the triangle: ");
+        int intInputted = ValidateInput();
+        triangleSides[i] = intInputted;
+    }
+    return triangleSides;
 }
 
-int* getRectanglePoints()
-{
-	int* inputArray = (int*)malloc(2 * sizeof(int));
-	for (int i = 0; i < 2; i++)
-	{
-		if (i == 0)
-		{
-			printf_s("Enter the x value: ");
-		}
-		else if (i == 1)
-		{
-			printf_s("Enter the y value: ");
-		}
-		int intInputted = ValidateInput();
-		*(inputArray + i) = intInputted;
-	}
-	return inputArray;
+int* getRectanglePoints() {
+    int* inputArray = (int*)malloc(2 * sizeof(int));
+    for (int i = 0; i < 2; i++) {
+        if (i == 0) {
+            printf_s("Enter the x value: ");
+        } else if (i == 1) {
+            printf_s("Enter the y value: ");
+        }
+        int intInputted = ValidateInput();
+        *(inputArray + i) = intInputted;
+    }
+    return inputArray;
 }
