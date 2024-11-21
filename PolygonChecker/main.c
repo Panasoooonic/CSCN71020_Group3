@@ -72,11 +72,11 @@ int main() {
 
 				// Print out the rectangular permieter
 				double perimeter = getRectanglePerimeter(ArrOfPoints);
-				printf("The perimeter of rectangular is: %f\n", perimeter);
+				printf("The perimeter of rectangular is: %.3f\n", perimeter);
 
 				// Print out the rectangular area
 				double area = getRectangleArea(ArrOfPoints);
-				printf("The perimeter of rectangular is: %f\n", area);
+				printf("The perimeter of rectangular is: %.3f\n", area);
 			}
 			else {
 				printf("4 given points cannot shape a rectangular!\n");
