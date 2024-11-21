@@ -83,10 +83,6 @@ int main() {
 			}
 			break;
 
-            // Additional rectangle processing can be added here
-
-            break;
-
         case 0:
             continueProgram = false;
             break;

@@ -9,6 +9,7 @@ int Validation()	// primary Validation function
 {
 	char input[10];
 	scanf_s("%s", &input, 9);	// accept string input
+
 	int inputValue = atof(&input);	// convert to integer
 	return inputValue;
 }
@@ -45,14 +46,14 @@ int ValidateInput()
 	{
 		int inputValue = Validation();
 
-		if (inputValue >= 1)
+		if (inputValue >= 1 || inputValue <= 100)
 		{
 			intInputted = inputValue;
 			repeat = false;
 		}
 		else
 		{
-			printf("Please enter a numeric value or a value greater than or equal to 1: ");
+			printf("Please enter a numeric value (0 <= x <= 100): ");
 		}
 	}
 	return intInputted;
