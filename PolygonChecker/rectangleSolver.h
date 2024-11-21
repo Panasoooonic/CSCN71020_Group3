@@ -5,17 +5,11 @@
 typedef struct point {
 	int x;
 	int y;
-} POINT;
+}POINT;
 
 
-//
-//
-//bool is_Rectangle(POINT* points);
-//int get_Peram(POINT* arrOfPoints);
-//int get_Area(POINT* arrOfPoints);
-//int get_Distance(POINT pointA, POINT pointB);
 bool checkIfRectangular(POINT points[4]);
-//void Sort_Points(POINT* arrOfPoints);
-
-
-
+void swapTwoPoints(POINT points[4], int point1, int point2);
+double getRectanglePerimeter(POINT points[4]);
+double getRectangleArea(POINT points[4]);
+double* getTwoRectangleEdges(POINT points[4]);

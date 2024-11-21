@@ -52,24 +52,38 @@ int main() {
 		case 2:
 			printf_s("Rectangle selected.\n");
 			printf_s("Please enter 4 (x,y) points to create the rectangle.\n");
-			//Create 2d array to store points of rectangle
+
+			// Create 2d array to store points of rectangle
 			POINT ArrOfPoints[4];
-			//Iterate 4 times to take 4 inputs
+			// Iterate 4 times to take 4 inputs
 			for (int i = 0; i < 4; i++) {
 				//Take input from user and store it in tmp int array of size 2
 				int* TmpPointPntr = getRectanglePoints();
-				//fill in i point of 2d array with inputted x and y values
+				// Fill in i point of 2d array with inputted x and y values
 				ArrOfPoints[i].x = *(TmpPointPntr + 0);
 				ArrOfPoints[i].y = *(TmpPointPntr + 1);
-				printf("%d %d", ArrOfPoints[i].x, ArrOfPoints[i].y);
-				//Free memory used to temp variable
+				printf("%d %d\n", ArrOfPoints[i].x, ArrOfPoints[i].y);
+				// Free memory used to temp variable
 				free(TmpPointPntr);
 			}
+
+			// Check if 4 points are able to shape a valid rectangular
 			bool isRectangular = checkIfRectangular(ArrOfPoints);
-			if (!isRectangular) {
-				printf("4 given points cannot shape a rectangular!");
-				break;
+			if (isRectangular) {
+				printf("These 4 points are able to shape a valid rectangular.\n");
+
+				// Print out the rectangular permieter
+				double perimeter = getRectanglePerimeter(ArrOfPoints);
+				printf("The perimeter of rectangular is: %f\n", perimeter);
+
+				// Print out the rectangular area
+				double area = getRectangleArea(ArrOfPoints);
+				printf("The perimeter of rectangular is: %f\n", area);
 			}
+			else {
+				printf("4 given points cannot shape a rectangular!\n");
+			}
+			break;
 
 
 		case 0:

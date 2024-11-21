@@ -1,8 +1,53 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
+#include <stdlib.h>
 
 #include "rectangleSolver.h"
+
+void swapTwoPoints(POINT points[4], int point1, int point2)
+{
+	POINT tempPoint = points[point1];
+	points[point1] = points[point2];
+	points[point2] = tempPoint;
+}
+
+double* getTwoRectangleEdges(POINT points[4]) {
+	double* twoEdges = (double*)malloc(2 * sizeof(double));
+
+	if (twoEdges == NULL) {
+		printf("Error at getTwoRectangleEdges function:\n");
+		printf("Cannot create dynamic memory allocation!\n");
+		exit(0);
+		return;
+	}
+
+	// Calculate vector value between 2 points
+	POINT vector1 = { points[0].x - points[1].x, points[0].y - points[1].y };		// Calculate the vector between point1 & point2
+	POINT vector2 = { points[0].x - points[3].x,  points[0].y - points[3].y };		// Calculate the vector between point1 & point4
+
+	// Calculate the length of two vectors
+	twoEdges[0] = sqrt(vector1.x * vector1.x + vector1.y * vector1.y);
+	twoEdges[1] = sqrt(vector2.x * vector2.x + vector2.y * vector2.y);
+
+	return twoEdges;
+}
+
+double getRectanglePerimeter(POINT points[4])
+{
+	double* twoEdges = getTwoRectangleEdges(points);
+	double result = (twoEdges[0] + twoEdges[1]) * 2;
+	free(twoEdges);
+	return result;
+}
+
+double getRectangleArea(POINT points[4])
+{
+	double* twoEdges = getTwoRectangleEdges(points);
+	double result = twoEdges[0] * twoEdges[1];
+	free(twoEdges);
+	return result;
+}
 
 bool checkIfRectangular(POINT points[4]) {
 	bool isRectangular = true;
@@ -46,6 +91,12 @@ bool checkIfRectangular(POINT points[4]) {
 		// Find the square "corner" for this point
 		bool isSquareAngle = scalarProduct1 == 0 || scalarProduct2 == 0 || scalarProduct3 == 0;
 		isRectangular &= isSquareAngle;
+
+		// Swap two points to reorder a valid sequence to shape a rectangular
+		if (i == 3) {
+			if (scalarProduct1 == 0) swapTwoPoints(points, 0, 3);
+			if (scalarProduct3 == 0) swapTwoPoints(points, 2, 3);
+		}
 	}
 	
 	return isRectangular;

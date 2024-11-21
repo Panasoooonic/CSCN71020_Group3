@@ -3,8 +3,7 @@
 #define Validation_H
 
 int ValidateStartInput();
-int ValidateTriangleInput();
-int ValidateRectangleInput();
+int ValidateInput();
 
 #endif // !Validation_H
 
