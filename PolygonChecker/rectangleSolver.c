@@ -27,8 +27,8 @@ double* getTwoRectangleEdges(POINT points[4]) {
 	POINT vector2 = { points[0].x - points[3].x,  points[0].y - points[3].y };		// Calculate the vector between point1 & point4
 
 	// Calculate the length of two vectors
-	twoEdges[0] = sqrt(vector1.x * vector1.x + vector1.y * vector1.y);
-	twoEdges[1] = sqrt(vector2.x * vector2.x + vector2.y * vector2.y);
+	twoEdges[0] = sqrt(pow(vector1.x, 2) + pow(vector1.y, 2));
+	twoEdges[1] = sqrt(pow(vector2.x, 2) + pow(vector2.y, 2));
 
 	return twoEdges;
 }
@@ -82,6 +82,15 @@ bool checkIfRectangular(POINT points[4]) {
 		POINT vector1 = { currPoint.x - point1.x, currPoint.y - point1.y };		// Calculate the vector between currPoint & point1
 		POINT vector2 = { currPoint.x - point2.x, currPoint.y - point2.y };		// Calculate the vector between currPoint & point2
 		POINT vector3 = { currPoint.x - point3.x, currPoint.y - point3.y };		// Calculate the vector between currPoint & point3
+
+		// Check if 4 points are identical
+		if (vector1.x == 0 && vector1.y == 0) {
+			if (vector2.x == 0 && vector2.y == 0) {
+				if (vector3.x == 0 && vector3.y == 0) {
+					return false;
+				}
+			}
+		}
 
 		// Calculate the scalar product between 2 vectors
 		int scalarProduct1 = vector1.x * vector2.x + vector1.y * vector2.y;		// Calculate scalar product between vector1 & vector2
